@@ -115,11 +115,6 @@ Everything is written to `OUTPUT_DIR/<run name>/`:
 - `analysis/samples_rank*_*.jsonl`: one JSON line per training response (step, judge score and its probabilities, judge confidence, student uncertainty, truncation flag, response text).
 - `analysis/run_manifest_*.json`: configuration, package versions, and a SHA-256 hash of the selected training data.
 
-## Reproducing the paper
-
-- **Main runs (Qwen3-4B and Qwen3-8B):** run the default script and use **`checkpoint-150`**. The learning rate decays linearly over the full 3-epoch budget, so keep the budget unchanged and stop once `checkpoint-150` is saved. Shortening the budget would change the learning-rate schedule. On 4 A100 80GB GPUs, Qwen3-4B takes about 7.5 hours per 50 steps, so roughly 22 hours to reach `checkpoint-150`.
-- **Coefficient study (α):** `ADDITIVE_QUALITY_MIX` ∈ {0, 0.25, 0.5, 0.75, 1} with `TEACHER_MODE=fixed`.
-
 ## Acknowledgements
 
 `rusd_trainer.py` builds on the [Hugging Face TRL](https://github.com/huggingface/trl) trainers (Apache-2.0).
